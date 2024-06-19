@@ -32,7 +32,6 @@ function App() {
   }
 
   console.log(a, b);
-  const [height, width] = useWindowProps();
   return (
     <div className="App">
       <Products cart={cart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} />
