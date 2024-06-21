@@ -1,6 +1,7 @@
 import './App.css';
 import { a, b } from './components/Products/Products';
 import Products from './components/Products/Products';
+import CartContext from './context/CartContext';
 import { useState } from 'react';
 function App() {
   // state variable
@@ -34,7 +35,9 @@ function App() {
   console.log(a, b);
   return (
     <div className="App">
-      <Products cart={cart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} />
+      <CartContext.Provider value={{ cart, increaseQuantity, decreaseQuantity }}>
+        <Products />
+      </CartContext.Provider>
     </div>
   );
 }
