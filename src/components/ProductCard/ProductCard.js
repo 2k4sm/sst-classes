@@ -1,15 +1,15 @@
-import './ProductCard.css';
-import AddToCart from '../AddToCart/AddToCart';
-import { useRef, useState } from 'react';
-import logo1 from '../../assests/logo1.png';
+import "./ProductCard.css";
+import ReduxAddToCart from "../ReduxAddToCart/ReduxAddToCart";
+import { useRef, useState } from "react";
+import logo1 from "../../assests/logo1.png";
 function ProductCard({ product }) {
   var a = 10;
   a = a + 1;
   let pRef = useRef(0);
   let iRef = useRef(0);
   let oRef = useRef(0);
-  let [inputV, setInputV] = useState('Class');
-  console.log("pc", product.id)
+  let [inputV, setInputV] = useState("Class");
+  console.log("pc", product.id);
 
   // setInput(value);
   function printTitle() {
@@ -37,13 +37,12 @@ function ProductCard({ product }) {
       <img src={logo1} />
       <input type="text" onChange={displayOutput} ref={iRef} value={inputV} />
       <p ref={oRef}>Over here the output would arrive - {inputV}</p>
-      <AddToCart product={product} />
+      <ReduxAddToCart product={product} />
     </div>
-    )
-  }
-  
+  );
+}
+
 export default ProductCard;
-  
 
 //ProductCard()
 
@@ -51,23 +50,20 @@ export default ProductCard;
 // useRef
 // useEffect
 
-// custom hooks 
+// custom hooks
 // default hooks
-// they should not render a ui 
-// they should be on the top of a function 
-// they should be not in any conditon or loops 
+// they should not render a ui
+// they should be on the top of a function
+// they should be not in any conditon or loops
 
-
-
-// state variable = 
+// state variable =
 // whenver a state variable is set it would cause a rerender of the component
 // and the value of the variable would be retained on rerenders
 
-// function or component is called for the first time 
+// function or component is called for the first time
 // Mounting
 
 // useState(default value)
 // returns [stateVar, setterFn];
-
 
 // useEffect(fn, [])

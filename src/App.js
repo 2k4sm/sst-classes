@@ -1,45 +1,12 @@
-import './App.css';
-import { a, b } from './components/Products/Products';
-import Products from './components/Products/Products';
-import CartContext from './context/CartContext';
-import { useState } from 'react';
-import CartContext from './context/CartContext';
+import "./App.css";
+import { a, b } from "./components/Products/Products";
+import Products from "./components/Products/Products";
 function App() {
-  // state variable
-  // inc
-  // dec
-  let [cart, setCart] = useState({});
-  function increaseQuantity(product) {
-    const newCart = { ...cart };
-    // if(cart[product.id])
-    if (!newCart[product.id]) {
-      newCart[product.id] = {
-        ...product,
-        quantity: 0
-      };
-    }
-    newCart[product.id].quantity += 1;
-    console.log(newCart);
-    setCart(newCart);
-  }
-
-  function decreaseQuantity(product) {
-    const newCart = { ...cart };
-    if (!newCart[product.id]) return;
-    newCart[product.id].quantity -= 1;
-    if (newCart[product.id].quantity <= 0) {
-      delete newCart[product.id];
-    }
-    setCart(newCart);
-  }
-
   console.log(a, b);
   return (
-    <CartContext.Provider value={{ cart, increaseQuantity, decreaseQuantity}}>
-      <div className="App">
-        <Products  />
-      </div>
-    </CartContext.Provider>
+    <div className="App">
+      <Products />
+    </div>
   );
 }
 
@@ -59,17 +26,15 @@ export default App;
 
 // {cart: cart, increaseQuantity: increaseQuantity}
 
-
 // Global Parent
 // Global state
 // way to manipulate the state
 // way to consume the state
 
-
 //  Provider
 //  Store
-    // State
-    // Reducer
+// State
+// Reducer
 // Action
 // Dispatcher
 // Selectors
