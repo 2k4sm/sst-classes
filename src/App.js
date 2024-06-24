@@ -3,6 +3,7 @@ import { a, b } from './components/Products/Products';
 import Products from './components/Products/Products';
 import CartContext from './context/CartContext';
 import { useState } from 'react';
+import CartContext from './context/CartContext';
 function App() {
   // state variable
   // inc
@@ -34,11 +35,11 @@ function App() {
 
   console.log(a, b);
   return (
-    <div className="App">
-      <CartContext.Provider value={{ cart, increaseQuantity, decreaseQuantity }}>
-        <Products />
-      </CartContext.Provider>
-    </div>
+    <CartContext.Provider value={{ cart, increaseQuantity, decreaseQuantity}}>
+      <div className="App">
+        <Products  />
+      </div>
+    </CartContext.Provider>
   );
 }
 
@@ -55,3 +56,20 @@ export default App;
 
 // a => 1234
 // a => 12
+
+// {cart: cart, increaseQuantity: increaseQuantity}
+
+
+// Global Parent
+// Global state
+// way to manipulate the state
+// way to consume the state
+
+
+//  Provider
+//  Store
+    // State
+    // Reducer
+// Action
+// Dispatcher
+// Selectors

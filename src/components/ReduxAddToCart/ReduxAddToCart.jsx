@@ -1,13 +1,11 @@
-import { useContext } from "react";
-import CartContext from "../../context/CartContext";
 function AddToCart({ product }) {
-    console.log("add to cart", product.id)
-    const { cart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
+    console.log("add to cart", product.id);
+    // useSelector
     function increase() {
-        increaseQuantity(product);
+        //dispatch({type: , payload: })
     }
     function decrease() {
-        decreaseQuantity(product);
+     //dispatch({type: , payload: })
     }
     const quantity = cart[product.id] ? cart[product.id].quantity : 0;
     if (quantity === 0) {
@@ -22,13 +20,10 @@ function AddToCart({ product }) {
                 <button onClick={decrease}>-</button>
                 <span>{quantity}</span>
                 <button onClick={increase}>+</button>
-
             </div>
         )
     }
-
 }
-
 export default AddToCart;
 
 
