@@ -1,33 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../../store";
 function ReduxAddToCart({ product }) {
-  console.log("add to cart", product.id);
-  // useSelector
-  const dispatch = useDispatch();
-  function increase() {
-    dispatch({ type: "ADD_TO_CART", payload: product });
-  }
-  function decrease() {
-    dispatch({ type: "REMOVE_FROM_CART", payload: product });
-  }
-  const quantity = useSelector((state) => {
-    return state.items[product.id]?.quantity || 0;
-  });
+	console.log("add to cart", product.id);
+	// useSelector
+	const dispatch = useDispatch();
+	function increase() {
+		dispatch(addToCart(product));
+	}
+	function decrease() {
+		dispatch(removeFromCart(product));
+	}
+	const quantity = useSelector((state) => {
+		return state.items[product.id]?.quantity || 0;
+	});
 
-  if (quantity === 0) {
-    return (
-      <div>
-        <button onClick={increase}>AddToCart</button>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <button onClick={decrease}>-</button>
-        <span>{quantity}</span>
-        <button onClick={increase}>+</button>
-      </div>
-    );
-  }
+	if (quantity === 0) {
+		return (
+			<div>
+				<button onClick={increase}>AddToCart</button>
+			</div>
+		);
+	} else {
+		return (
+			<div>
+				<button onClick={decrease}>-</button>
+				<span>{quantity}</span>
+				<button onClick={increase}>+</button>
+			</div>
+		);
+	}
 }
 export default ReduxAddToCart;
 
