@@ -1,10 +1,12 @@
 import "./App.css";
+import Cart from "./components/Cart/Cart";
 import { a, b } from "./components/Products/Products";
 import Products from "./components/Products/Products";
 function App() {
   console.log(a, b);
   return (
     <div className="App">
+      <Cart />
       <Products />
     </div>
   );
