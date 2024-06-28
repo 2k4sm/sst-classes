@@ -1,34 +1,48 @@
+import React, { useState, useEffect } from "react";
 import ProductCard from "../ProductCard/ProductCard";
-import Effect from "../Effect/Effect";
-import React from "react";
-import { useState, useEffect } from "react";
 import useWindowSize from "../../hooks/useWindowSize";
+
 function Products() {
 	let [products, setProducts] = useState([]);
+	let [selectedCategory, setSelectedCategory] = useState("All");
+
 	console.log("products");
 	console.log(useWindowSize());
+
 	useEffect(() => {
-		fetch("https://run.mocky.io/v3/0912a49d-ab8c-4aa2-9363-d1d21fd3f66a")
-			.then((response) => {
-				return response.json();
-			})
+		fetch("https://fakestoreapi.com/products")
+			.then((response) => response.json())
 			.then((res) => {
 				console.log(res);
 				setProducts(res);
 			});
 	}, []);
 
+	const handleCategoryChange = (event) => {
+		setSelectedCategory(event.target.value);
+	};
+
+	const filteredProducts = selectedCategory === "All"
+		? products
+		: products.filter((product) => product.category === selectedCategory);
+
 	return (
 		<div>
 			<div>
-				<Effect />
+				<h3>Filter by category:</h3>
+				<select id="category" value={selectedCategory} onChange={handleCategoryChange}>
+					<option value="All">All</option>
+					<option value="electronics">electronics</option>
+					<option value="jewelery">jewelery</option>
+					<option value="men's clothing">men's clothing</option>
+					<option value="women's clothing">women's clothing</option>
+				</select>
 			</div>
-			{products.map((item, index) => {
-				return <ProductCard key={index} product={item} />;
-			})}
+			{filteredProducts.map((item, index) => (
+				<ProductCard key={index} product={item} />
+			))}
 		</div>
 	);
 }
-export let a = 10;
-export let b = 20;
-export default React.memo(Products);
+
+export default Products;
