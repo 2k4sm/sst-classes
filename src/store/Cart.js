@@ -1,10 +1,6 @@
 import { omit } from "lodash";
-import { createStore } from "redux";
 const ADD_TO_CART = "ADD_TO_CART";
 const REMOVE_FROM_CART = "REMOVE_FROM_CART";
-const FETCH_PRODUCTS = "FETCH_PRODUCTS";
-
-export function fetchProducts() {}
 
 export function addToCart(product) {
 	return {
@@ -20,9 +16,7 @@ export function removeFromCart(product) {
 	};
 }
 
-async function productReducer(state = { products: {} }, action) {}
-
-function cartReducer(state = { items: {} }, action) {
+export default function cartReducer(state = { items: {} }, action) {
 	switch (action.type) {
 		case ADD_TO_CART: {
 			const product = action.payload;
@@ -74,7 +68,3 @@ function cartReducer(state = { items: {} }, action) {
 			return state;
 	}
 }
-
-const store = createStore(cartReducer);
-
-export default store;

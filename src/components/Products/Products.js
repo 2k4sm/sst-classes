@@ -1,36 +1,41 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import useWindowSize from "../../hooks/useWindowSize";
+import { useDispatch, useSelector } from "react-redux";
+import { loadProducts } from "../../store/Products";
 
 function Products() {
-	let [products, setProducts] = useState([]);
+	const dispatch = useDispatch();
 	let [selectedCategory, setSelectedCategory] = useState("All");
 
 	console.log("products");
 	console.log(useWindowSize());
 
 	useEffect(() => {
-		fetch("https://fakestoreapi.com/products")
-			.then((response) => response.json())
-			.then((res) => {
-				console.log(res);
-				setProducts(res);
-			});
-	}, []);
+		dispatch(loadProducts());
+	}, [dispatch]);
 
+	const products = useSelector((state) => {
+		return state.products.products;
+	});
 	const handleCategoryChange = (event) => {
 		setSelectedCategory(event.target.value);
 	};
 
-	const filteredProducts = selectedCategory === "All"
-		? products
-		: products.filter((product) => product.category === selectedCategory);
+	const filteredProducts =
+		selectedCategory === "All"
+			? products
+			: products.filter((product) => product.category === selectedCategory);
 
 	return (
 		<div>
 			<div>
 				<h3>Filter by category:</h3>
-				<select id="category" value={selectedCategory} onChange={handleCategoryChange}>
+				<select
+					id="category"
+					value={selectedCategory}
+					onChange={handleCategoryChange}
+				>
 					<option value="All">All</option>
 					<option value="electronics">electronics</option>
 					<option value="jewelery">jewelery</option>
